@@ -94,13 +94,101 @@ g.myMethod() // így kell meghívni a függvényt, akkor ha objektum, g változ�
 
 window.addEventListener("load", loadEvent) //2 argumentumot küldünk be, egyik string másik esemény */
 
-let h = {
+/* let h = {
     anotherMethod: function (text) {
         return `you sent the following argument to this method: ${text}`
     }
 }
 let i = h.anotherMethod("Hello")
 console.log(i);
-console.log(h.anotherMethod("another argument"));
+console.log(h.anotherMethod("another argument")); */
+
+/* let myString = "mikkamakka";
+let mySecondString = myString;
+let myThirdString = "mikkamakka"
+
+console.log(myString);
+console.log(mySecondString);
+console.log(myString === mySecondString); //egyenlővé teszi, így mindig az lesz, akármilyen értéket rendelünk hozzá
+console.log(myString === myThirdString); //minden karakter ugyanaz, így igaz ez az összehasonlítás is */
+
+/* //azért jó beletennio bjektumba, hogy lekorlátozza, így ez a myString nem akad össze a fentivel
+let myObject = { 
+    myString: "mikkamakka"
+}
+
+let mySecondObject = myObject;
+
+let myThirdObject = {
+    myString: "mikkamakka"
+}
+
+/* console.log(myObject === mySecondObject);
+
+console.log(myObject === myThirdObject);
+ */
+/* console.log("" === ""); //primitív stringeket karakterekre lebontva hasonlítja össze, így lehet ugyanaz
+console.log({} === {}); // objektum újra külön létrejött, ezért nem egyenlő */
+
+/* mySecondObject.myString = "domdodom"; //megváltoztatja a myObject myStringjét is. hiába másik objektum, mindkettő ugyanoda mutat, az egyenlőség jel miatt. 
+
+let myFourthObject = {...myObject}; // így lehet lemásolni. 
+myFourthObject.myString = "vacskamati";
+
+console.log(myObject.myString); 
+console.log(myThirdObject.myString); //ez inkább klón, ha megváltoztatjuk a myObject myString keyet ez attól még nem változik 
+
+console.log(myFourthObject.myString); */ 
+
+
+
+//-------------------------------------new story starts here--------------------------------------------
+
+/* //nem muszáj kiírni a loadeventet ahogy alább, így is működik a kód ->
+window.addEventListener("load", function (){
+    console.log("the page loaded");
+})  */
+
+function loadEvent() {
+    console.log("it has indeed");
+    
+    let rootElement = document.getElementById("root")
+
+    let card = function(movieRecieve){
+        return ` 
+        <div class="card">
+            <h3>${movieRecieve.title}</h3>
+            <div class="time">${movieRecieve.year}</div>
+            <div class="rate">${movieRecieve.rate}</div>
+        </div>
+        `;
+    };
+
+    rootElement.insertAdjacentHTML("beforeend", card({
+        "title": "Arrival",
+        "year": 2018,
+        "rate": 9.9
+    })); 
+
+    let actualFavoriteMovie = {
+        "title": "Riders of Justice",
+        "year": 2021,
+        "rate": 10
+    };
+
+    rootElement.insertAdjacentHTML("beforeend", card(actualFavoriteMovie)); 
+    rootElement.insertAdjacentHTML("beforeend", card(movies[0])); 
+    
+    for (const movieSend of movies) { //legyen előtte let vagy const h maradjon block scope
+        rootElement.insertAdjacentHTML("beforeend", card(movieSend)); 
+    }
+}
+
+
+
+window.addEventListener("load", loadEvent);
+
+
+
 
 
