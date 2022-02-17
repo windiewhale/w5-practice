@@ -152,19 +152,39 @@ window.addEventListener("load", function (){
 function loadEvent() {
     console.log("it has indeed");
     
-    let rootElement = document.getElementById("root")
+    let rootElement = document.getElementById("root");
 
-    let card = function(movieRecieve){
+    let card2 = function(title, year, rate){
+        return ` 
+        <div class="card">
+            <h3>${title}</h3>
+            <div class="time">${year}</div>
+            <div class="rate">${rate}</div>
+            </div>
+            `;
+        };
+
+        let anotherFavoriteMovie = {
+            "title": "The last Scout boy",
+            "year": 1991,
+            "rate": 7.0
+        }
+        
+        rootElement.insertAdjacentHTML("beforeend", card2(anotherFavoriteMovie.title, anotherFavoriteMovie.year, anotherFavoriteMovie.rate)); 
+        
+        for (const movieSend of movies) { 
+            rootElement.insertAdjacentHTML("beforeend", card2(movieSend.title, movieSend.year, movieSend.rate)); 
+        }
+   /*  let card = function(movieRecieve){
         return ` 
         <div class="card">
             <h3>${movieRecieve.title}</h3>
             <div class="time">${movieRecieve.year}</div>
             <div class="rate">${movieRecieve.rate}</div>
-        </div>
-        `;
-    };
+            </div>
+            `; */
 
-    rootElement.insertAdjacentHTML("beforeend", card({
+   /*  rootElement.insertAdjacentHTML("beforeend", card({
         "title": "Arrival",
         "year": 2018,
         "rate": 9.9
@@ -174,14 +194,14 @@ function loadEvent() {
         "title": "Riders of Justice",
         "year": 2021,
         "rate": 10
-    };
+    }; */
 
-    rootElement.insertAdjacentHTML("beforeend", card(actualFavoriteMovie)); 
+    /* rootElement.insertAdjacentHTML("beforeend", card(actualFavoriteMovie)); 
     rootElement.insertAdjacentHTML("beforeend", card(movies[0])); 
     
     for (const movieSend of movies) { //legyen előtte let vagy const h maradjon block scope
         rootElement.insertAdjacentHTML("beforeend", card(movieSend)); 
-    }
+    } */
 }
 
 
